@@ -1,0 +1,3 @@
+[submodule "persona3-hacker"]
+	path = persona3-hacker
+	url = git@github.com:brymlee/persona3-hacker.git
