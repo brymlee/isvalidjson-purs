@@ -3,8 +3,7 @@ module Test.Main (main) where
 import Control.Bind (discard)
 import Data.Unit (Unit)
 import Effect (Effect)
-import Json ( isNextCharacter
-            , isFirstCharacterOpenCurlyBracket
+import Json ( isFirstCharacterOpenCurlyBracket
             , isFirstCharacterOpenSquareBracket
             , isLastCharacterClosedCurlyBracket
             , isStartingCurlyBrackets
@@ -16,6 +15,7 @@ import Test.Assert (assert)
 import Data.Function (($))
 import Prim (Boolean(..))
 import Data.Eq ((==))
+import IsNextCharacter (isNextCharacter)
 
 main :: Effect Unit
 main = do
@@ -41,3 +41,5 @@ main = do
   assert $ isValidJson "b" == false
   assert $ isValidJson "{ \"a\": \"b\", \"c\": \"d\" }"
   assert $ isValidJson "{ \"a\": \"b\", \"c\": \"d\", }" == false
+  assert $ isValidJson "{ \"a\": \"b\",, }" == false
+--  assert $ isValidJson "{ \"a\": \"b\", { }}" == false
